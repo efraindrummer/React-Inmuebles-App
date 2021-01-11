@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router, Switch, Route
+} from "react-router-dom";
+import { ListaInmuebles } from './componentes/vistas/ListaInmuebles';
+import { Grid, MuiThemeProvider } from '@material-ui/core';
+import theme from './theme/theme';
+import { AppNavbar } from './componentes/layout/AppNavbar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <MuiThemeProvider theme={theme}>
+          <AppNavbar />
+          <Grid container>
+            <Switch>
+              <Route path="/" exact component={ListaInmuebles}></Route>
+            </Switch>
+          </Grid>
+          {/* <ListaInmuebles /> */}
+        </MuiThemeProvider>
+      </Router>
     </div>
   );
 }
